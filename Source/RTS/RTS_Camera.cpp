@@ -55,7 +55,12 @@ void ARTS_Camera::MoveLeft()
 	/**
 	* As the mouse scrolls to the left the speed will increase as the it gets closer to the edge
 	*/
-	double normalizeToRange = 1 - UKismetMathLibrary::NormalizeToRange(mousePosition.X, rangeMin, rangeMax);
+	double movementRate{};
+	movementRate = UKismetMathLibrary::NormalizeToRange(mousePosition.X, rangeMin, rangeMax);
+	movementRate = 1 - UKismetMathLibrary::Clamp(movementRate, 0, 1);
 
+	FVector deltaLocation = UKismetMathLibrary::Multiply_VectorFloat(FVector(100, 0, 0), movementRate);
+
+	SpringArm->AddRelativeLocation(deltaLocation);
 }
 
