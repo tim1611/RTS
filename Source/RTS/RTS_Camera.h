@@ -24,6 +24,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void MoveLeft();
+	void MoveRight();
+	void MoveUp();
+	void MoveDown();
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
